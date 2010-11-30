@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Video and Audio Streaming</title>
+<script src="{$base_url}/flowplayer/flowplayer-3.2.4.min.js"></script>
+<style type="text/css" media="screen">
+#flowplayer {
+    display: block;
+    width: {$width}px;
+    height: {$height}px;
+}
+</style>
+</head>
+<body>
+    <h1>Stream</h1>
+
+    {if $player == 'html5'}
+        {if $mediatype == "video"}
+            <video src="{$transcode_url}" width="{$width}" 
+                    height="{$height}" preload controls>
+                your browser must support html5/video tag
+            </video>
+        {else}
+            <audio src="{$transcode_url}" preload controls>
+                your browser must support html5/audio tag
+            </audio>
+        {/if}
+    {else if $player == 'flash'}
+        <div id="flowplayer"></div>
+        <script>
+            flowplayer(
+                "flowplayer",
+                "{$base_url}/flowplayer/flowplayer-3.2.5.swf",
+                {ldelim}
+                    clip:
+                    {ldelim}
+                        url: '{$transcode_url}'
+                    {rdelim}
+                {rdelim}
+            );
+        </script>
+    {/if}
+</body>
+</html>
+
