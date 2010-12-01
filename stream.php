@@ -72,7 +72,10 @@ else if ($args['acodec'] == 'libfaac') $mime = 'audio/x-aac';
 if(!empty($mime)) header('Content-Type: '.$mime);
 
 /* build ffmpeg command */
-$cmd = FFMPEG." -y -i \"$mediafile\" ";
+$cmd = FFMPEG;
+if(!empty($args['seek']))
+    $cmd .= " -ss ".$args['seek'];
+$cmd .= " -y -i \"$mediafile\" ";
 if(!empty($args['vcodec']))
     $cmd .= " -vcodec ".$args['vcodec'];
 if(!empty($args['acodec']))
@@ -89,8 +92,7 @@ if(!empty($args['size']))
     $cmd .= " -s ".$args['size'];
 if(!empty($args['container']))
     $cmd .= " -f ".$args['container'];
-if(!empty($args['seek']))
-    $cmd .= " -ss ".$args['seek'];
+
 
 /* special cases */
 if($args['vcodec'] == 'libx264') $cmd .= " -vpre ".$args['vpre']."_firstpass -vpre ".$args['vpre2'];
