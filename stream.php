@@ -93,6 +93,8 @@ if(!empty($args['size']))
 if(!empty($args['container']))
     $cmd .= " -f ".$args['container'];
 
+if(!empty($args['audio_stream']))
+    $cmd .= " -map 0.0:0.0 -map 0.".$args['audio_stream'].":0.1";
 
 /* special cases */
 if($args['vcodec'] == 'libx264') $cmd .= " -vpre ".$args['vpre']."_firstpass -vpre ".$args['vpre2'];
