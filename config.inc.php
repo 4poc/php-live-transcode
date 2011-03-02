@@ -41,6 +41,6 @@ define('DEBUG_LOG', '/srv/media/streamer.log'); /* very useful debug information
 
 define('MEDIA_PATH', '/srv/media'); /* the folder is accessible by create.php/<filename> subfolders are not supported! */
 /* make sure php can read it (openbasedir etc.) */
-define('BASE_URL', 'https://gene.ath.cx/streamer'); /* full url to the installation */
+define('BASE_URL', 'http://example.com/streamer'); /* full url to the installation */
 
 
